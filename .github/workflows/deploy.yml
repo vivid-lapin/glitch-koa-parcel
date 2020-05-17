@@ -26,7 +26,10 @@ jobs:
       - name: Install
         run: |
           yarn
-      - name: Build
+      - name: Parcel Build
+        run: |
+          yarn parcel-build
+      - name: TypeScript Build
         run: |
           yarn build
   deploy:

@@ -2,20 +2,17 @@ import Parcel from "parcel-bundler"
 import Koa from "koa"
 import Router from "koa-router"
 import KoaStaticServer from "koa-static-server"
-import fs from "fs"
-import { promisify } from "util"
-const exists = promisify(fs.exists)
+
 import { apiRouter } from "./server/api"
 
 const main = async () => {
+  const start = new Date().getTime()
   const port = process.env.PORT || "5000"
   const isProduction = process.env.NODE_ENV === "production"
 
-  const publicIsExists = await exists("./public")
-
-  if (!isProduction || !publicIsExists) {
+  if (!isProduction) {
     const bundler = new Parcel("./src/frontend/index.html", {
-      outDir: "./public",
+      outDir: "./.data/public",
     })
     await bundler.bundle()
   }
@@ -25,7 +22,7 @@ const main = async () => {
   router.use("/api", apiRouter.routes())
   app.use(
     KoaStaticServer({
-      rootDir: "./public",
+      rootDir: "./.data/public",
       notFoundFile: "index.html",
       last: false,
     })
@@ -33,7 +30,9 @@ const main = async () => {
   app.use(router.routes())
 
   app.listen(port, () => {
-    console.log(`live on http://localhost:${port}`)
+    console.log(
+      `live on http://localhost:${port} (${new Date().getTime() - start}ms)`
+    )
   })
 }
 main()
