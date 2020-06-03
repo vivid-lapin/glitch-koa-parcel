@@ -1,16 +1,19 @@
-import Parcel from "parcel-bundler"
 import Koa from "koa"
 import Router from "koa-router"
 import KoaStaticServer from "koa-static-server"
 
 import { apiRouter } from "./server/api"
 
+const isProduction =
+  process.env.NODE_ENV === "production" ||
+  process.env.ENVIRONMENT === "production"
+const port = process.env.PORT || "5000"
+
 const main = async () => {
   const start = new Date().getTime()
-  const port = process.env.PORT || "5000"
-  const isProduction = process.env.NODE_ENV === "production"
 
   if (!isProduction) {
+    const Parcel = require("parcel-bundler")
     const bundler = new Parcel("./src/frontend/index.html", {
       outDir: "./.data/public",
     })

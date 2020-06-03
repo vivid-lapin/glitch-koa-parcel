@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export NODE_ENV="production"
+
 GENERATED_WITH=`cat ./.data/generated_with`
 HEAD=`git rev-parse HEAD`
 
