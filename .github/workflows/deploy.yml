@@ -32,6 +32,10 @@ jobs:
       - name: TypeScript Build
         run: |
           yarn build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: prebuilt-dist
+          path: .data
   deploy:
     runs-on: ubuntu-latest
 

@@ -17,8 +17,16 @@ echo "HEAD: $HEAD"
 
 rm -rf .data/{dist,public}
 
-yarn build
-yarn parcel-build &
+if [[ ${GITHUB_TOKEN} && ${GITHUB_REPO} ]]; then
+    curl -s -S -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/${GITHUB_REPO}/actions/artifacts > /tmp/artifacts.json
+    ARCHIVE_URL=`cat /tmp/artifacts.json | jq -r ".artifacts | .[0] | .archive_download_url"`
+    curl -s -L -H "Authorization: token ${GITHUB_TOKEN}" "${ARCHIVE_URL}" -o /tmp/prebuilt-dist.zip
+    unzip -d .data -u /tmp/prebuilt-dist.zip
+else 
+    yarn build
+    yarn parcel-build
+fi
+
 
 echo "$HEAD" > ./.data/generated_with
 
