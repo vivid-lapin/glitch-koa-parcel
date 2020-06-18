@@ -4586,13 +4586,6 @@ parcel-bundler@^1.12.4:
     v8-compile-cache "^2.0.0"
     ws "^5.1.1"
 
-parcel-plugin-purgecss@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/parcel-plugin-purgecss/-/parcel-plugin-purgecss-3.0.0.tgz#693ecbe66698ed1afbc70b300bcdc873e0aef25a"
-  integrity sha512-Qz20tltkSyqmRrRyKAHSIoqyfDIREFgvrkf3VhgineeOHgRbBdDHR4bs0iRvy9fJqS5MNn6r1RpZvxkk0BybkQ==
-  dependencies:
-    purgecss "^2.2.1"
-
 parse-asn1@^5.0.0, parse-asn1@^5.1.5:
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/parse-asn1/-/parse-asn1-5.1.5.tgz#003271343da58dc94cace494faef3d2147ecea0e"
@@ -5219,7 +5212,7 @@ purgecss@^1.4.0:
     postcss-selector-parser "^6.0.0"
     yargs "^14.0.0"
 
-purgecss@^2.2.0, purgecss@^2.2.1:
+purgecss@^2.2.0:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/purgecss/-/purgecss-2.2.1.tgz#aa3bdf23370f7539df6154f5e25df2da311cd018"
   integrity sha512-wngRSLW1dpNr8kr3TL9nTJMyTFI5BiRiaUUEys5M1CA4zEHLF25fRHoshEeDqmhstaNTOddmpYM34zRrUtEGbQ==
